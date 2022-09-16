@@ -20,10 +20,7 @@ jobs:
             node --version => v17.0.0
             sudo apt install nodejs
 
-            echo "--------- The images is Building ------------"
-
-            docker build -t udagram-frontend ./udagram-frontend
-            docker tag udagram-frontend jameskaranja/front:v13
+            echo "--------- The images is Building ----"
 
             docker build -t udagram-api ./udagram-api
             docker tag udagram-api jameskaranja/udagram-api:v13
@@ -36,7 +33,7 @@ jobs:
 
             echo "-------------- Pushing images to dockerhub-------"
 
-            docker push jameskaranja/front:v13
+            
             docker push jameskaranja/udagram-api:v13
 
 workflows:

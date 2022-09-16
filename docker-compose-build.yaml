@@ -1,0 +1,11 @@
+version: "3"
+services:
+  front:
+    build:
+      context: ./front
+    image: front
+  udagram-api:
+    build:
+      context: ./udagram-api
+    image: udagram-api
+  

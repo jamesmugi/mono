@@ -1,0 +1,39 @@
+version: "3"
+services:
+  reverseproxy:
+      image: reverseproxy
+      ports:
+          - 8080:8080
+      restart: always
+      depends_on:
+        - udagram-api
+  udagram-api:
+    image: udagram-api
+    environment:
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "mugi27938392" 
+      POSTGRES_DB: "postgres" 
+      POSTGRES_HOST: "postgresdb.c8fylkhtlboe.us-east-1.rds.amazonaws.com"
+      AWS_REGION: "us-east-1" 
+      AWS_PROFILE: "default" 
+      AWS_BUCKET: "myawsbucket-541453266566-dev"
+      JWT_SECRET: "testing"
+      URL: "http://localhost:8100"
+  front:
+    image: front
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "mugi27938392" 
+      POSTGRES_DB: "postgres"
+      POSTGRES_HOST: "postgresdb.c8fylkhtlboe.us-east-1.rds.amazonaws.com"
+      AWS_REGION: "us-east-1"
+      AWS_PROFILE: "default" 
+      AWS_BUCKET: "myawsbucket-541453266566-dev"
+      JWT_SECRET: "testing"
+      URL: "http://localhost:8100"
+  front:
+    image: front
+    ports:
+      - "8100:80"

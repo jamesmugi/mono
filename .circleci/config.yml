@@ -22,11 +22,11 @@ jobs:
 
             echo "--------- The images is Building ------------"
 
-            docker build -t udagram-frontend ./front
-            docker tag udagram-frontend jameskaranja/front:v3
+            docker build -t udagram-frontend ./udagram-frontend
+            docker tag udagram-frontend jameskaranja/front:v13
 
             docker build -t udagram-api ./udagram-api
-            docker tag udagram-api jameskaranja/udagram-api:v3
+            docker tag udagram-api jameskaranja/udagram-api:v13
 
             echo "-------- All images succesfully built----------"
 
@@ -36,8 +36,8 @@ jobs:
 
             echo "-------------- Pushing images to dockerhub-------"
 
-            docker push jameskaranja/udagram-frontend:v3
-            docker push jameskaranja/udagram-api:v3
+            docker push jameskaranja/front:v13
+            docker push jameskaranja/udagram-api:v13
 
 workflows:
   default:
